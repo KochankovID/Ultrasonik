@@ -34,15 +34,16 @@
             // ultraSonick1
             // 
             this.ultraSonick1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ultraSonick1.Location = new System.Drawing.Point(75, 112);
+            this.ultraSonick1.Location = new System.Drawing.Point(83, 81);
             this.ultraSonick1.Name = "ultraSonick1";
-            this.ultraSonick1.Size = new System.Drawing.Size(332, 234);
+            this.ultraSonick1.Size = new System.Drawing.Size(332, 282);
             this.ultraSonick1.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(489, 450);
             this.Controls.Add(this.ultraSonick1);
             this.Name = "Form1";

@@ -39,8 +39,9 @@ namespace Задача_2_Вариант_14
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.DoubleBuffered = true;
             this.Name = "UltraSonick";
-            this.Size = new System.Drawing.Size(387, 233);
+            this.Size = new System.Drawing.Size(495, 414);
             this.ResumeLayout(false);
+
         }
 
         #endregion

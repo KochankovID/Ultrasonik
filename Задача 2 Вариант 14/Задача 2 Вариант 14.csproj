@@ -61,10 +61,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UltraSonick.cs">
+    <Compile Include="UltraBlock\UltraSonick.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UltraSonick.Designer.cs">
+    <Compile Include="UltraBlock\UltraSonick.Designer.cs">
       <DependentUpon>UltraSonick.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
@@ -81,8 +81,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UltraSonick.resx">
+    <EmbeddedResource Include="UltraBlock\UltraSonick.resx">
       <DependentUpon>UltraSonick.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -101,19 +102,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="Resources\left.wmf" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Low_menu.wmf" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\plumba2.wmf" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\UltraSonik %281%29.wmf" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\up_port.wmf" />
+    <EmbeddedResource Include="Resources\block.wmf" />
+    <Content Include="Resources\Left.wmf" />
+    <Content Include="Resources\Port_down_spisok.wmf" />
+    <Content Include="Resources\Port_up.wmf" />
+    <Content Include="Resources\Right.wmf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
