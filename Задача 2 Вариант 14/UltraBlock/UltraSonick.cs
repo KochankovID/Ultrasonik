@@ -13,19 +13,31 @@ namespace Задача_2_Вариант_14
     public partial class UltraSonick : UserControl
     {
 
-        private int port = 0; // Количество очков
         private int dist = 0; // Дистанция
+        private SpisokPorts ports;
         private Rectangle PortR, LeftR, RightR, MenuR;
+
+        private void UltraSonick_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (PortR.Contains(e.Location))
+            {
+                ports.open();
+                this.Invalidate();
+            }
+        }
+
         Point PortText = new Point(); 
 
         // Методы класса
         public UltraSonick()
         {
             InitializeComponent();
+            ports = new SpisokPorts("1#2#3#4");
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
+
             double Portk = 0.54, Portg = 0.02, Portl = 0.3757, Porto = 0.18;
             PortR.X = (int)Math.Round(Width * Portk);
             PortR.Y = (int)Math.Round(Height * Portg) + 1;
@@ -60,7 +72,8 @@ namespace Задача_2_Вариант_14
             e.Graphics.DrawImage(Image.FromFile("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Right.wmf"), RightR);
             e.Graphics.DrawImage(Image.FromFile("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left.wmf"), LeftR);
             e.Graphics.DrawImage(Image.FromFile("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_down_spisok.wmf"), MenuR);
-            e.Graphics.DrawString(port.ToString(), new Font("Ports", 12), Brushes.Black, PortText); 
+            //e.Graphics.DrawString(port.ToString(), new Font("Ports", 12), Brushes.Black, PortText); 
+            ports.Draw(e.Graphics, PortText.X, PortText.Y, (int)Math.Round(Width *0.152), (int)Math.Round(Height * 0.162));
 
         }
     }
