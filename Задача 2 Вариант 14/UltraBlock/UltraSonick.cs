@@ -57,12 +57,31 @@ namespace Задача_2_Вариант_14
                 flag = true;
                 return;
             }
-            if(flag)
+            if (LeftR.Contains(e.Location))
+            {
+                Left = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left_Fokused1.wmf";
+                this.Invalidate();
+                flag = true;
+                return;
+            }
+            if (RightR.Contains(e.Location))
+            {
+                Right = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Right_Fokused.wmf";
+                this.Invalidate();
+                flag = true;
+                return;
+            }
+
+            if (flag)
             {
                 Ports_up = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_up.wmf";
+                Left = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left.wmf";
+                Right = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Right.wmf";
+                             
                 this.Invalidate();
                 flag = false;
             }
+
         }
 
         Point PortText = new Point(); 
