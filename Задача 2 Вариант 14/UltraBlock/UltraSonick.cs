@@ -13,9 +13,10 @@ namespace Задача_2_Вариант_14
     public partial class UltraSonick : UserControl
     {
 
-        private int port; // Количество очков
-        private int dist; // Дистанция
-        private Rectangle PortR, LeftR, RightR, titelR;
+        private int port = 0; // Количество очков
+        private int dist = 0; // Дистанция
+        private Rectangle PortR, LeftR, RightR, MenuR;
+        Point PortText = new Point(); 
 
         // Методы класса
         public UltraSonick()
@@ -31,23 +32,36 @@ namespace Задача_2_Вариант_14
             PortR.Height = (int)Math.Round(Height * Porto);
             PortR.Width = (int)Math.Round(Width * Portl);
 
-            double Leftk = 0.03, Leftg = 0.4, Lefto = 0.158, Leftl = 0.156;
+            double Leftk = 0.03, Leftg = 0.395, Lefto = 0.17, Leftl = 0.156;
             LeftR.X = (int)Math.Round(Width * Leftk);
             LeftR.Y = (int)Math.Round(Height * Leftg) + 1;
             LeftR.Height = (int)Math.Round(Height * Lefto);
             LeftR.Width = (int)Math.Round(Width * Leftl);
 
-            double Rightk = 0.82, Rightg = 0.4, Righto = 0.158, Rightl = 0.15;
+            double Rightk = 0.82, Rightg = 0.395, Righto = 0.17, Rightl = 0.15;
             RightR.X = (int)Math.Round(Width * Rightk);
             RightR.Y = (int)Math.Round(Height * Rightg) + 1;
             RightR.Height = (int)Math.Round(Height * Righto);
             RightR.Width = (int)Math.Round(Width * Rightl);
+
+            double Menuk = 0.07, Menug = 0.6, Menul = 0.442, Menuo = 0.3925;
+            MenuR.X = (int)Math.Round(Width * Menuk);
+            MenuR.Y = (int)Math.Round(Height * Menug) + 1;
+            MenuR.Height = (int)Math.Round(Height * Menuo);
+            MenuR.Width = (int)Math.Round(Width * Menul);
+
+            double PTX = 0.45, PTY = 0.35;
+            PortText.X = PortR.X + (int)Math.Round(PortR.Width * PTX); 
+            PortText.Y = PortR.Y + (int)Math.Round(PortR.Height * PTY);
 
             base.OnPaint(e);
             e.Graphics.DrawImage(Image.FromFile("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\block.wmf"), ClientRectangle);
             e.Graphics.DrawImage(Image.FromFile("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_up.wmf"), PortR);
             e.Graphics.DrawImage(Image.FromFile("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Right.wmf"), RightR);
             e.Graphics.DrawImage(Image.FromFile("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left.wmf"), LeftR);
+            e.Graphics.DrawImage(Image.FromFile("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_down_spisok.wmf"), MenuR);
+            e.Graphics.DrawString(port.ToString(), new Font("Ports", 12), Brushes.Black, PortText); 
+
         }
     }
 }
