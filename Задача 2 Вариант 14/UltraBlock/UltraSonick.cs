@@ -73,7 +73,7 @@ namespace Задача_2_Вариант_14
             e.Graphics.DrawImage(Image.FromFile("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left.wmf"), LeftR);
             e.Graphics.DrawImage(Image.FromFile("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_down_spisok.wmf"), MenuR);
             //e.Graphics.DrawString(port.ToString(), new Font("Ports", 12), Brushes.Black, PortText); 
-            ports.Draw(e.Graphics, PortText.X, PortText.Y, (int)Math.Round(Width *0.152), (int)Math.Round(Height * 0.162));
+            ports.Draw(e.Graphics, PortText.X, PortText.Y, (int)Math.Round(Width *0.052), (int)Math.Round(Height * 0.062));
 
         }
     }
