@@ -16,6 +16,12 @@ namespace Задача_2_Вариант_14
         private int dist = 0; // Дистанция
         private SpisokPorts ports;
         private Rectangle PortR, LeftR, RightR, MenuR;
+        private string blokFile = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\block.wmf",
+                       Left = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left.wmf",
+                       Right = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Right.wmf",
+                       Ports_up = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_up.wmf",
+                       DownSpisok = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_down_spisok.wmf";
+
 
         private void UltraSonick_MouseClick(object sender, MouseEventArgs e)
         {
@@ -38,6 +44,24 @@ namespace Задача_2_Вариант_14
                 }
                 ports.open();
                 this.Invalidate();
+            }
+        }
+        private static bool flag = true;
+        private void UltraSonick_MouseMove(object sender, MouseEventArgs e)
+        {
+
+            if (PortR.Contains(e.Location)||(ports.getopenS()&& ports.isInside(e)))
+            {
+                Ports_up = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_up_Fokused2.wmf";
+                this.Invalidate();
+                flag = true;
+                return;
+            }
+            if(flag)
+            {
+                Ports_up = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_up.wmf";
+                this.Invalidate();
+                flag = false;
             }
         }
 
@@ -82,11 +106,11 @@ namespace Задача_2_Вариант_14
             PortText.Y = PortR.Y + (int)Math.Round(PortR.Height * PTY);
 
             base.OnPaint(e);
-            e.Graphics.DrawImage(Image.FromFile("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\block.wmf"), ClientRectangle);
-            e.Graphics.DrawImage(Image.FromFile("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_up.wmf"), PortR);
-            e.Graphics.DrawImage(Image.FromFile("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Right.wmf"), RightR);
-            e.Graphics.DrawImage(Image.FromFile("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left.wmf"), LeftR);
-            e.Graphics.DrawImage(Image.FromFile("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_down_spisok.wmf"), MenuR);
+            e.Graphics.DrawImage(Image.FromFile(blokFile), ClientRectangle);
+            e.Graphics.DrawImage(Image.FromFile(Ports_up), PortR);
+            e.Graphics.DrawImage(Image.FromFile(Right), RightR);
+            e.Graphics.DrawImage(Image.FromFile(Left), LeftR);
+            e.Graphics.DrawImage(Image.FromFile(DownSpisok), MenuR);
             //e.Graphics.DrawString(port.ToString(), new Font("Ports", 12), Brushes.Black, PortText); 
             ports.Draw(e.Graphics, PortText.X, PortText.Y, (int)Math.Round(Width *0.052), (int)Math.Round(Height * 0.072));
 

@@ -41,6 +41,7 @@ namespace Задача_2_Вариант_14
             this.Name = "UltraSonick";
             this.Size = new System.Drawing.Size(495, 414);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.UltraSonick_MouseClick);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.UltraSonick_MouseMove);
             this.ResumeLayout(false);
 
         }
