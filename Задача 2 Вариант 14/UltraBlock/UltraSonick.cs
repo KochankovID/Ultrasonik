@@ -60,14 +60,24 @@ namespace Задача_2_Вариант_14
                 }
             }
 
+
             if (MenuR.Contains(e.Location))
             {
                 if (regims.getopenS()&&(regims.isInside(e)))
                 {
-                    regims.ChangePorts(e);
-                    regims.open();
-                    this.Invalidate();
-                    return;
+                    if (regims.getopenp())
+                    {
+                        regims.ChangePorts(e);
+                        regims.open();
+                        this.Invalidate();
+                        return;
+                    }
+                    else
+                    {
+                        regims.openPP();
+                        this.Invalidate();
+                        return;
+                    }
                 }
                 else
                 {
@@ -78,20 +88,27 @@ namespace Задача_2_Вариант_14
             }
             else
             {
-                if (regims.getopenS())
+                if (regims.getopenS() || (regims.isInside(e)))
                 {
-                    if (regims.isInside(e))
+                    if (regims.getopenp())
                     {
                         regims.ChangePorts(e);
+                        regims.openPP();
                         regims.open();
                         this.Invalidate();
                         return;
                     }
                     else
                     {
-                        regims.open();
+                        regims.openPP();
                         this.Invalidate();
+                        return;
                     }
+                }
+                else
+                {
+                    regims.open();
+                    this.Invalidate();
                 }
             }
 

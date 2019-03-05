@@ -92,14 +92,32 @@ namespace Задача_2_Вариант_14
         {
             if ((e.Y < Location.Y) || (e.Y > Location.Height + Location.Y + (Location.Height / 3 * menuPunct.Count)))
             {
-                if (getopenp())
-                {
-
+                //if (getopenp())
+                //{
+                //    if ((e.Y < Location.Y) || (e.Y > Location.Height + Location.Y + (Location.Height / 3 * menuPodpunct.Count)))
+                //    {
+                //        return false;
+                //    }
+                //}
+                //else
+                //{
+                    return false;
+                //}
             }
             if ((e.X < Location.X) || (e.X > Location.X + Location.Width))
             {
-                return false;
+                if (getopenp())
+                {
+                    if ((e.X > Location.X + Location.Width +Location.X) || (e.X < Location.X + Location.Width))
+                    {
+                        return false;
+                    }else
+                    {
+                        return false;
+                    }
+                }
             }
+            return true;
         }
 
         internal void ChangePorts(MouseEventArgs e)
@@ -131,8 +149,8 @@ namespace Задача_2_Вариант_14
                     for (int i = 0; i < menuPodpunct.Count; i++)
                     {
                         graphics.ResetClip();
-                        graphics.DrawImage(Image.FromFile(menuPodpukt), Location.X+Location.Width, Location.Height + (Location.Y*(currentMenu+1)) + (Location.Height / 3 * i), Location.Width, Location.Height / 3);
-                        graphics.DrawString(menuPunct[i], new Font("Ports", Location.Height / 13 * 2 < Location.Width / 13 * 2 ? Location.Height / 13 * 2 : Location.Width / 13 * 2), Brushes.Black, Location.X + Location.Width + Location.Width / 20, Location.Height / 20 + Location.Height + (Location.Y * (currentMenu + 1)) + (Location.Height / 3 * i));
+                        graphics.DrawImage(Image.FromFile(menuPodpukt), Location.X+Location.Width, Location.Height + (Location.Y*(currentMenu+1)) + (Location.Height / 4 * i), Location.Width, Location.Height / 4);
+                        graphics.DrawString(menuPodpunct[i], new Font("Ports", Location.Height / 13 * 2 < Location.Width / 13 * 2 ? Location.Height / 13 * 2 : Location.Width / 13 * 2), Brushes.Black, Location.X + Location.Width + Location.Width / 10, Location.Height / 33 + Location.Height + (Location.Y * (currentMenu + 1)) + (Location.Height / 4 * i));
                     }
                 }
             }
