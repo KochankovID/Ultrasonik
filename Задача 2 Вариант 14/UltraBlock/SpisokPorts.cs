@@ -41,7 +41,7 @@ namespace Задача_2_Вариант_14
 
         internal bool isInside(System.Windows.Forms.MouseEventArgs e)
         {
-            if ((e.Y > Location.X)||(e.X < Location.Y - (Location.Width * spisok.Count)))
+            if ((e.Y > Location.Y)||(e.X < Location.Y - (Location.Width * spisok.Count)))
             {
                 return false;
             }

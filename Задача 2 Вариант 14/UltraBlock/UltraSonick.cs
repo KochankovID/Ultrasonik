@@ -15,6 +15,7 @@ namespace Задача_2_Вариант_14
 
         private int dist = 0; // Дистанция
         private SpisokPorts ports;
+        private Menu1 regims;
         private Rectangle PortR, LeftR, RightR, MenuR, BlockR;
         private string blokFile = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\block.wmf",
                        Left = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left.wmf",
@@ -96,6 +97,7 @@ namespace Задача_2_Вариант_14
         {
             InitializeComponent();
             ports = new SpisokPorts("0#1#2#3#4");
+            regims = new Menu1("Измерения#Сравнения", "Cантиметры#Дюймы#Километры");
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -140,7 +142,7 @@ namespace Задача_2_Вариант_14
             e.Graphics.DrawImage(Image.FromFile(Ports_up), PortR);
             e.Graphics.DrawImage(Image.FromFile(Right), RightR);
             e.Graphics.DrawImage(Image.FromFile(Left), LeftR);
-            e.Graphics.DrawImage(Image.FromFile(DownSpisok), MenuR);
+            regims.Draw(e.Graphics, MenuR.X, MenuR.Y, MenuR.Width, MenuR.Height);
 
             e.Graphics.ResetClip();
             ports.Draw(e.Graphics, PortText.X, PortText.Y, (int)Math.Round(Width *0.052), (int)Math.Round(Height * 0.044));
