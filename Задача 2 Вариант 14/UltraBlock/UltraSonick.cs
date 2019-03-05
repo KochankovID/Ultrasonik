@@ -15,7 +15,7 @@ namespace Задача_2_Вариант_14
 
         private int dist = 0; // Дистанция
         private SpisokPorts ports;
-        private Rectangle PortR, LeftR, RightR, MenuR, SpisokupR;
+        private Rectangle PortR, LeftR, RightR, MenuR, BlockR;
         private string blokFile = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\block.wmf",
                        Left = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left.wmf",
                        Right = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Right.wmf",
@@ -100,49 +100,50 @@ namespace Задача_2_Вариант_14
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            SpisokupR.X = 0;
-            SpisokupR.Y = 0;
-            SpisokupR.Height = Height / 2;
-            SpisokupR.Width = Width / 2;
-            e.Graphics.IntersectClip(SpisokupR);
+            BlockR.X = 0;
+            BlockR.Y = Height/5;
+            BlockR.Height = Height*3 / 5;
+            BlockR.Width = Width;
+            e.Graphics.SetClip(BlockR);
+
+
             double Portk = 0.54, Portg = 0.02, Portl = 0.3757, Porto = 0.18;
-            PortR.X = (int)Math.Round(e.Graphics.ClipBounds.Width * Portk);
-            PortR.Y = (int)Math.Round(Height * Portg) + 1;
-            PortR.Height = (int)Math.Round(Height * Porto);
-            PortR.Width = (int)Math.Round(Width * Portl);
+            PortR.X = (int)Math.Round(BlockR.Width * Portk);
+            PortR.Y = BlockR.Y + (int)Math.Round(BlockR.Height * Portg) + 1;
+            PortR.Height = (int)Math.Round(BlockR.Height * Porto);
+            PortR.Width = (int)Math.Round(BlockR.Width * Portl);
 
             double Leftk = 0.03, Leftg = 0.395, Lefto = 0.17, Leftl = 0.156;
-            LeftR.X = (int)Math.Round(Width * Leftk);
-            LeftR.Y = (int)Math.Round(Height * Leftg) + 1;
-            LeftR.Height = (int)Math.Round(Height * Lefto);
-            LeftR.Width = (int)Math.Round(Width * Leftl);
+            LeftR.X = (int)Math.Round(BlockR.Width * Leftk);
+            LeftR.Y = BlockR.Y + (int)Math.Round(BlockR.Height * Leftg) + 1;
+            LeftR.Height = (int)Math.Round(BlockR.Height * Lefto);
+            LeftR.Width = (int)Math.Round(BlockR.Width * Leftl);
 
             double Rightk = 0.82, Rightg = 0.395, Righto = 0.17, Rightl = 0.15;
-            RightR.X = (int)Math.Round(Width * Rightk);
-            RightR.Y = (int)Math.Round(Height * Rightg) + 1;
-            RightR.Height = (int)Math.Round(Height * Righto);
-            RightR.Width = (int)Math.Round(Width * Rightl);
+            RightR.X = (int)Math.Round(BlockR.Width * Rightk);
+            RightR.Y = BlockR.Y + (int)Math.Round(BlockR.Height * Rightg) + 1;
+            RightR.Height = (int)Math.Round(BlockR.Height * Righto);
+            RightR.Width = (int)Math.Round(BlockR.Width * Rightl);
 
             double Menuk = 0.07, Menug = 0.6, Menul = 0.442, Menuo = 0.3925;
-            MenuR.X = (int)Math.Round(Width * Menuk);
-            MenuR.Y = (int)Math.Round(Height * Menug) + 1;
-            MenuR.Height = (int)Math.Round(Height * Menuo);
-            MenuR.Width = (int)Math.Round(Width * Menul);
+            MenuR.X = (int)Math.Round(BlockR.Width * Menuk);
+            MenuR.Y = BlockR.Y + (int)Math.Round(BlockR.Height * Menug) + 1;
+            MenuR.Height = (int)Math.Round(BlockR.Height * Menuo);
+            MenuR.Width = (int)Math.Round(BlockR.Width * Menul);
 
             double PTX = 0.45, PTY = 0.35;
             PortText.X = PortR.X + (int)Math.Round(PortR.Width * PTX); 
             PortText.Y = PortR.Y + (int)Math.Round(PortR.Height * PTY);
 
             base.OnPaint(e);
-            e.Graphics.DrawImage(Image.FromFile(blokFile), ClientRectangle);
+            e.Graphics.DrawImage(Image.FromFile(blokFile), e.Graphics.ClipBounds);
             e.Graphics.DrawImage(Image.FromFile(Ports_up), PortR);
             e.Graphics.DrawImage(Image.FromFile(Right), RightR);
             e.Graphics.DrawImage(Image.FromFile(Left), LeftR);
             e.Graphics.DrawImage(Image.FromFile(DownSpisok), MenuR);
-            
-            e.Graphics.DrawRectangle(Pens.DarkBlue, e.Graphics.VisibleClipBounds.Location.X, e.Graphics.VisibleClipBounds.Location.Y, e.Graphics.VisibleClipBounds.Width, e.Graphics.VisibleClipBounds.Height);
-            //e.Graphics.DrawString(port.ToString(), new Font("Ports", 12), Brushes.Black, PortText); 
-            ports.Draw(e.Graphics, PortText.X, PortText.Y, (int)Math.Round(Width *0.052), (int)Math.Round(Height * 0.072));
+
+            e.Graphics.ResetClip();
+            ports.Draw(e.Graphics, PortText.X, PortText.Y, (int)Math.Round(Width *0.052), (int)Math.Round(Height * 0.044));
         }
     }
 }

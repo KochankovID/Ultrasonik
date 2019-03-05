@@ -41,11 +41,11 @@ namespace Задача_2_Вариант_14
 
         internal bool isInside(System.Windows.Forms.MouseEventArgs e)
         {
-            if ((e.X > Location.X)||(e.X < Location.X - (Location.Width * spisok.Count)))
+            if ((e.Y > Location.X)||(e.X < Location.Y - (Location.Width * spisok.Count)))
             {
                 return false;
             }
-            if ((e.Y < Location.Y) || (e.Y > Location.Y+Location.Height))
+            if ((e.X < Location.X) || (e.X > Location.X+Location.Width))
             {
                 return false;
             }
@@ -54,7 +54,7 @@ namespace Задача_2_Вариант_14
 
         internal void ChangePorts(MouseEventArgs e)
         {
-            currentPort = spisok[((Location.X - e.X)-1) / Location.Width];
+            currentPort = spisok[((Location.Y - e.Y)-1) / Location.Width];
         }
 
         internal void Draw(Graphics graphics, int x, int y, int width, int height)
@@ -74,8 +74,8 @@ namespace Задача_2_Вариант_14
                 {
                     //graphics.FillRectangle(Brushes.Gray, Location.X - (Location.Width * (i + 1)), Location.Y, Location.Width, Location.Height);
                     //graphics.DrawRectangle(Pens.Black, Location.X - (Location.Width * (i + 1)), Location.Y, Location.Width, Location.Height);
-                    graphics.DrawImage(Image.FromFile(spisokImage), Location.X - (Location.Width * (i + 1)), Location.Y, Location.Width, Location.Height);
-                    graphics.DrawString(spisok[i], new Font("Ports", 12), Brushes.Black, Location.X - (Location.Width * (i + 1)), Location.Y);
+                    graphics.DrawImage(Image.FromFile(spisokImage), Location.X, Location.Y - (Location.Height * (i + 1)), Location.Width, Location.Height);
+                    graphics.DrawString(spisok[i], new Font("Ports", Location.Height / 3 * 2 < Location.Width / 3 * 2 ? Location.Height / 3 * 2 : Location.Width / 3 * 2), Brushes.Black, Location.X + Location.Width/6, Location.Y - (Location.Height * (i + 1)));
                 }
             }
         }
