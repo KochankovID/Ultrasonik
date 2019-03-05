@@ -63,51 +63,43 @@ namespace Задача_2_Вариант_14
 
             if (MenuR.Contains(e.Location))
             {
-                if (regims.getopenS()&&(regims.isInside(e)))
-                {
-                    if (regims.getopenp())
-                    {
-                        regims.ChangePorts(e);
-                        regims.open();
-                        this.Invalidate();
-                        return;
-                    }
-                    else
-                    {
-                        regims.openPP();
-                        this.Invalidate();
-                        return;
-                    }
-                }
-                else
-                {
                     regims.open();
                     this.Invalidate();
                     return;
-                }
             }
             else
             {
-                if (regims.getopenS() || (regims.isInside(e)))
+                if ((regims.isInside(e))||(regims.isInsidePod(e)))
                 {
-                    if (regims.getopenp())
+                    if (regims.getopenS()&&regims.isInside(e))
                     {
-                        regims.ChangePorts(e);
+                        regims.ChangePodpunct(e);
                         regims.openPP();
-                        regims.open();
                         this.Invalidate();
                         return;
                     }
                     else
                     {
-                        regims.openPP();
-                        this.Invalidate();
-                        return;
+                        if (regims.getopenp() && regims.isInsidePod(e))
+                        {
+                            regims.ChangePorts(e);
+                            regims.openPP();
+                            regims.open();
+                            this.Invalidate();
+                            return;
+                        }
                     }
                 }
                 else
                 {
-                    regims.open();
+                    if (regims.getopenS())
+                    {
+                        regims.open();
+                    }
+                    if (regims.getopenp())
+                    {
+                        regims.openPP();
+                    }
                     this.Invalidate();
                 }
             }
@@ -138,7 +130,7 @@ namespace Задача_2_Вариант_14
                 flag = true;
                 return;
             }
-            if (MenuR.Contains(e.Location)||(regims.getopenS() && regims.isInside(e)))
+            if (MenuR.Contains(e.Location)||(regims.getopenS() && regims.isInside(e)||(regims.getopenp() && regims.isInsidePod(e))))
             {
                 regims.setMenuFokused();
                 this.Invalidate();
@@ -164,7 +156,7 @@ namespace Задача_2_Вариант_14
         {
             InitializeComponent();
             ports = new SpisokPorts("0#1#2#3#4");
-            regims = new Menu1("Измерения#Сравнения", "Cантиметры#Дюймы#Километры");
+            regims = new Menu1("Измерения#Сравнения", "Cантиметры#Дюймы#Присутствие", "раст. см#расст. дюймы#присутствие");
         }
 
         protected override void OnPaint(PaintEventArgs e)
