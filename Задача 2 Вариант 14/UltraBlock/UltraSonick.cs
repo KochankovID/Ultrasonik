@@ -20,31 +20,79 @@ namespace Задача_2_Вариант_14
         private string blokFile = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\block.wmf",
                        Left = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left.wmf",
                        Right = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Right.wmf",
-                       Ports_up = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_up.wmf",
-                       DownSpisok = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_down_spisok.wmf";
+                       Ports_up = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_up.wmf";
+                       
 
         private void UltraSonick_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!ports.getopenS())
+            if (PortR.Contains(e.Location))
             {
-                if (PortR.Contains(e.Location))
-                {
-                    ports.open();
-                    this.Invalidate();
-                }
-            }
-            else
-            {
-                if (ports.isInside(e))
+                if (ports.getopenS()&&ports.isInside(e))
                 {
                     ports.ChangePorts(e);
                     ports.open();
                     this.Invalidate();
                     return;
                 }
-                ports.open();
-                this.Invalidate();
+                else
+                {
+                    ports.open();
+                    this.Invalidate();
+                    return;
+                }
             }
+            else
+            {
+                if (ports.getopenS())
+                {
+                    if (ports.isInside(e))
+                    {
+                        ports.ChangePorts(e);
+                        ports.open();
+                        this.Invalidate();
+                        return;
+                    }
+                    else
+                    {
+                        ports.open();
+                        this.Invalidate();
+                    }
+                }
+            }
+
+            if (MenuR.Contains(e.Location))
+            {
+                if (regims.getopenS()&&(regims.isInside(e)))
+                {
+                    regims.open();
+                    this.Invalidate();
+                    return;
+                }
+                else
+                {
+                    regims.open();
+                    this.Invalidate();
+                    return;
+                }
+            }
+            else
+            {
+                if (regims.getopenS())
+                {
+                    if (regims.isInside(e))
+                    {
+                        regims.open();
+                        this.Invalidate();
+                        return;
+                    }
+                    else
+                    {
+                        regims.open();
+                        this.Invalidate();
+                    }
+                }
+            }
+
         }
         private static bool flag = true;
         private void UltraSonick_MouseMove(object sender, MouseEventArgs e)
@@ -71,9 +119,9 @@ namespace Задача_2_Вариант_14
                 flag = true;
                 return;
             }
-            if (MenuR.Contains(e.Location))
+            if (MenuR.Contains(e.Location)||(regims.getopenS() && regims.isInside(e)))
             {
-                DownSpisok = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_down_spisok_Fokused.wmf";
+                regims.setMenuFokused();
                 this.Invalidate();
                 flag = true;
                 return;
@@ -83,7 +131,7 @@ namespace Задача_2_Вариант_14
                 Ports_up = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_up.wmf";
                 Left = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left.wmf";
                 Right = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Right.wmf";
-                DownSpisok = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_down_spisok.wmf";
+                regims.setMenuUnFokused();
                 this.Invalidate();
                 flag = false;
             }
