@@ -16,12 +16,17 @@ namespace Задача_2_Вариант_14
         private int dist = 0; // Дистанция
         private SpisokPorts ports;
         private Rectangle PortR, LeftR, RightR, MenuR;
-        private string blokFile = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\block.wmf",
-                       Left = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left.wmf",
-                       Right = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Right.wmf",
-                       Ports_up = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_up.wmf",
-                       DownSpisok = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_down_spisok.wmf";
+        private string blokFile = "C:\\Users\\Илья\\Desktop\\Визуальное программирование\\Задача 2 Вариант 14\\Задача 2 Вариант 14\\Resources\\block.wmf",
+                       Left = "C:\\Users\\Илья\\Desktop\\Визуальное программирование\\Задача 2 Вариант 14\\Задача 2 Вариант 14\\Resources\\Left.wmf",
+                       Right = "C:\\Users\\Илья\\Desktop\\Визуальное программирование\\Задача 2 Вариант 14\\Задача 2 Вариант 14\\Resources\\Right.wmf",
+                       Ports_up = "C:\\Users\\Илья\\Desktop\\Визуальное программирование\\Задача 2 Вариант 14\\Задача 2 Вариант 14\\Resources\\Port_up.wmf",
+                       DownSpisok = "C:\\Users\\Илья\\Desktop\\Визуальное программирование\\Задача 2 Вариант 14\\Задача 2 Вариант 14\\Resources\\Port_down_spisok.wmf";
 
+
+        private void menu1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
 
         private void UltraSonick_MouseClick(object sender, MouseEventArgs e)
         {
@@ -52,21 +57,21 @@ namespace Задача_2_Вариант_14
 
             if (PortR.Contains(e.Location)||(ports.getopenS()&& ports.isInside(e)))
             {
-                Ports_up = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_up_Fokused2.wmf";
+                Ports_up = "C:\\Users\\Илья\\Desktop\\Визуальное программирование\\Задача 2 Вариант 14\\Задача 2 Вариант 14\\Resources\\Port_up_Fokused2.wmf";
                 this.Invalidate();
                 flag = true;
                 return;
             }
             if (LeftR.Contains(e.Location))
             {
-                Left = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left_Fokused1.wmf";
+                Left = "C:\\Users\\Илья\\Desktop\\Визуальное программирование\\Задача 2 Вариант 14\\Задача 2 Вариант 14\\Resources\\Left_Fokused1.wmf";
                 this.Invalidate();
                 flag = true;
                 return;
             }
             if (RightR.Contains(e.Location))
             {
-                Right = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Right_Fokused.wmf";
+                Right = "C:\\Users\\Илья\\Desktop\\Визуальное программирование\\Задача 2 Вариант 14\\Задача 2 Вариант 14\\Resources\\Right_Fokused.wmf";
                 this.Invalidate();
                 flag = true;
                 return;
@@ -74,9 +79,9 @@ namespace Задача_2_Вариант_14
 
             if (flag)
             {
-                Ports_up = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_up.wmf";
-                Left = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left.wmf";
-                Right = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Right.wmf";
+                Ports_up = "C:\\Users\\Илья\\Desktop\\Визуальное программирование\\Задача 2 Вариант 14\\Задача 2 Вариант 14\\Resources\\Port_up.wmf";
+                Left = "C:\\Users\\Илья\\Desktop\\Визуальное программирование\\Задача 2 Вариант 14\\Задача 2 Вариант 14\\Resources\\Left.wmf";
+                Right = "C:\\Users\\Илья\\Desktop\\Визуальное программирование\\Задача 2 Вариант 14\\Задача 2 Вариант 14\\Resources\\Right.wmf";
                              
                 this.Invalidate();
                 flag = false;
