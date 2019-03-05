@@ -137,7 +137,6 @@ namespace Задача_2_Вариант_14
             e.Graphics.DrawImage(Image.FromFile(DownSpisok), MenuR);
             //e.Graphics.DrawString(port.ToString(), new Font("Ports", 12), Brushes.Black, PortText); 
             ports.Draw(e.Graphics, PortText.X, PortText.Y, (int)Math.Round(Width *0.052), (int)Math.Round(Height * 0.072));
-
         }
     }
 }

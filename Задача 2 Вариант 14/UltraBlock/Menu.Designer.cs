@@ -34,7 +34,7 @@
             // 
             this.BackColor = System.Drawing.Color.Black;
             this.Dock = System.Windows.Forms.DockStyle.None;
-            this.Size = new System.Drawing.Size(20, 24);
+            this.Size = new System.Drawing.Size(100, 40);
             this.ResumeLayout(false);
 
         }

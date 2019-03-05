@@ -17,8 +17,5 @@ namespace Задача_2_Вариант_14
             InitializeComponent();
         }
 
-        private void ultraSonick1_Click(object sender, EventArgs e)
-        {
-        }
     }
 }
