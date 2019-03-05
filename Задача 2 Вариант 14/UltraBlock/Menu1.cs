@@ -4,13 +4,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Задача_2_Вариант_14
 {
     class Menu1
     {
 
-        private String menuBack;
+        private String menuBack, menuPodpukt;
         public void setMenuFokused()
         {
             if((currentMenu % 2)==0)
@@ -28,18 +29,21 @@ namespace Задача_2_Вариант_14
             return;
         }
         private int currentMenu;
-        private bool openS;
+        private bool openS, openP;
         Rectangle Location;
         private List<String> Files;
+        private int currentPodpunct;
 
         private List<String> menuPunct;
         private List<String> menuPodpunct;
         public Menu1(string srt1, string str2)
         {
             menuBack = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\BackMenucdr.wmf";
+            menuPodpukt = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Podpunkt.wmf";
             Files = new List<string>();
             Files.Add("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_Down_Spisok.wmf");
             Files.Add("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_Down_Spisok_Fokused.wmf");
+            Files.Add("");
             Files.Add("");
 
             menuPunct = new List<string>();
@@ -47,12 +51,29 @@ namespace Задача_2_Вариант_14
             menuPunct.AddRange(srt1.Split('#'));
             menuPodpunct.AddRange(str2.Split('#'));
             currentMenu = 0;
+            currentPodpunct = 0;
             openS = false;
+            openP = false;
         }
 
         public bool getopenS()
         {
             return openS;
+        }
+        public bool getopenp()
+        {
+            return openP;
+        }
+        internal void openPP()
+        {
+            if (openP)
+            {
+                openP = false;
+            }
+            else
+            {
+                openP = true;
+            }
         }
 
         internal void open()
@@ -69,20 +90,21 @@ namespace Задача_2_Вариант_14
 
         internal bool isInside(System.Windows.Forms.MouseEventArgs e)
         {
-            if ((e.Y < Location.Y) || (e.Y > Location.Height + Location.Y + (Location.Height/3 * menuPunct.Count)))
+            if ((e.Y < Location.Y) || (e.Y > Location.Height + Location.Y + (Location.Height / 3 * menuPunct.Count)))
             {
-                return false;
+                if (getopenp())
+                {
+
             }
             if ((e.X < Location.X) || (e.X > Location.X + Location.Width))
             {
                 return false;
             }
-            return true;
         }
 
         internal void ChangePorts(MouseEventArgs e)
         {
-            currentPort = spisok[((Location.Y - e.Y) - 1) / Location.Width];
+            currentMenu = ((e.Y- Location.Height + Location.Y) - 1) /Location.Height/3;
         }
 
         internal void Draw(Graphics graphics, int x, int y, int width, int height)
@@ -101,8 +123,17 @@ namespace Задача_2_Вариант_14
                 for (int i = 0; i < menuPunct.Count; i++)
                 {
                     graphics.ResetClip();
-                    graphics.DrawImage(Image.FromFile(menuBack), Location.X, Location.Height + Location.Y + (Location.Height/3 * i), Location.Width, Location.Height/3);
-                    graphics.DrawString(menuPunct[i], new Font("Ports", Location.Height / 13 * 2 < Location.Width / 13 * 2 ? Location.Height / 13 * 2 : Location.Width / 13 * 2), Brushes.Black, Location.X+Location.Width/20, Location.Height/ 20 + Location.Height+Location.Y + (Location.Height/3 * i));
+                    graphics.DrawImage(Image.FromFile(menuBack), Location.X, Location.Height + Location.Y + (Location.Height / 3 * i), Location.Width, Location.Height / 3);
+                    graphics.DrawString(menuPunct[i], new Font("Ports", Location.Height / 13 * 2 < Location.Width / 13 * 2 ? Location.Height / 13 * 2 : Location.Width / 13 * 2), Brushes.Black, Location.X + Location.Width / 20, Location.Height / 20 + Location.Height + Location.Y + (Location.Height / 3 * i));
+                }
+                if (getopenp())
+                {
+                    for (int i = 0; i < menuPodpunct.Count; i++)
+                    {
+                        graphics.ResetClip();
+                        graphics.DrawImage(Image.FromFile(menuPodpukt), Location.X+Location.Width, Location.Height + (Location.Y*(currentMenu+1)) + (Location.Height / 3 * i), Location.Width, Location.Height / 3);
+                        graphics.DrawString(menuPunct[i], new Font("Ports", Location.Height / 13 * 2 < Location.Width / 13 * 2 ? Location.Height / 13 * 2 : Location.Width / 13 * 2), Brushes.Black, Location.X + Location.Width + Location.Width / 20, Location.Height / 20 + Location.Height + (Location.Y * (currentMenu + 1)) + (Location.Height / 3 * i));
+                    }
                 }
             }
         }

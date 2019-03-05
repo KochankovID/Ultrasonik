@@ -101,6 +101,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Resources\BackMenucdr.wmf" />
+    <Content Include="Resources\Podpunkt.wmf" />
     <Content Include="Resources\Port_down_spisok_Fokused.wmf" />
     <Content Include="Resources\Port_up_Fokused1.wmf" />
     <Content Include="Resources\Right_Fokused.wmf" />

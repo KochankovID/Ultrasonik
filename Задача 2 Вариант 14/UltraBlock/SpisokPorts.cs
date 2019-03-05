@@ -54,7 +54,7 @@ namespace Задача_2_Вариант_14
 
         internal void ChangePorts(MouseEventArgs e)
         {
-            currentPort = spisok[((Location.Y - e.Y)-1) / Location.Width];
+            currentPort = spisok[((Location.Y - e.Y)-1) / Location.Height];
         }
 
         internal void Draw(Graphics graphics, int x, int y, int width, int height)

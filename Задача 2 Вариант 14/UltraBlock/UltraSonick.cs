@@ -64,6 +64,7 @@ namespace Задача_2_Вариант_14
             {
                 if (regims.getopenS()&&(regims.isInside(e)))
                 {
+                    regims.ChangePorts(e);
                     regims.open();
                     this.Invalidate();
                     return;
@@ -81,6 +82,7 @@ namespace Задача_2_Вариант_14
                 {
                     if (regims.isInside(e))
                     {
+                        regims.ChangePorts(e);
                         regims.open();
                         this.Invalidate();
                         return;
