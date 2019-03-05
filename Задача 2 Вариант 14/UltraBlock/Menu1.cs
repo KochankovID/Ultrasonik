@@ -140,10 +140,16 @@ namespace Задача_2_Вариант_14
             }
         }
 
+        public int getCurrentMenu()
+        {
+            return currentMenu;
+        }
         internal void Draw(Graphics graphics, int x, int y, int width, int height)
         {
             graphics.ResetClip();
             Location.X = x;
+            int k = 15;
+            int l = 2;
             Location.Y = y;
             Location.Width = width;
             Location.Height = height;
@@ -158,14 +164,14 @@ namespace Задача_2_Вариант_14
                 for (int i = 0; i < menuPunct.Count; i++)
                 {
                     graphics.DrawImage(Image.FromFile(menuBack), Location.X, Location.Height + Location.Y + (Location.Height / 3 * i), Location.Width, Location.Height / 3);
-                    graphics.DrawString(menuPunct[i], new Font("Ports", Location.Height / 13 * 2 < Location.Width / 13 * 2 ? Location.Height / 13 * 2 : Location.Width / 13 * 2), Brushes.Black, Location.X + Location.Width / 20, Location.Height / 20 + Location.Height + Location.Y + (Location.Height / 3 * i));
+                    graphics.DrawString(menuPunct[i], new Font("Ports", Location.Height / k * l < Location.Width / k * l ? Location.Height / k * l : Location.Width / k * l), Brushes.Black, Location.X + Location.Width / 20, Location.Height / 20 + Location.Height + Location.Y + (Location.Height / 3 * i));
                 }
                 if (getopenp())
                 {
                     for (int i = 0; i < menuPodpunct.Count; i++)
                     {
                         graphics.DrawImage(Image.FromFile(menuPodpukt), Location.X + Location.Width, Location.Height + Location.Y + (Location.Height / 4 * i), Location.Width, Location.Height / 4);
-                        graphics.DrawString(menuPodpunct[i], new Font("Ports", Location.Height / 13 * 2 < Location.Width / 13 * 2 ? Location.Height / 13 * 2 : Location.Width / 13 * 2), Brushes.Black, Location.X + Location.Width + Location.Width / 15, Location.Height / 30 + Location.Height + Location.Y + (Location.Height / 4 * i));
+                        graphics.DrawString(menuPodpunct[i], new Font("Ports", Location.Height / k * l < Location.Width / k * l ? Location.Height / k * l : Location.Width / k * l), Brushes.Black, Location.X + Location.Width + Location.Width / 15, Location.Height / 30 + Location.Height + Location.Y + (Location.Height / 4 * i));
                     }
                 }
             }

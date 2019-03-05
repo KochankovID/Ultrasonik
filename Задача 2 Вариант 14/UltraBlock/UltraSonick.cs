@@ -16,11 +16,12 @@ namespace Задача_2_Вариант_14
         private int dist = 0; // Дистанция
         private SpisokPorts ports;
         private Menu1 regims;
-        private Rectangle PortR, LeftR, RightR, MenuR, BlockR;
+        private Rectangle PortR, LeftR, RightR, MenuR, BlockR, PictureR;
         private string blokFile = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\block.wmf",
                        Left = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left.wmf",
                        Right = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Right.wmf",
                        Ports_up = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_up.wmf";
+        private List<String> Picture;
                        
 
         private void UltraSonick_MouseClick(object sender, MouseEventArgs e)
@@ -103,7 +104,6 @@ namespace Задача_2_Вариант_14
                     this.Invalidate();
                 }
             }
-
         }
         private static bool flag = true;
         private void UltraSonick_MouseMove(object sender, MouseEventArgs e)
@@ -157,6 +157,10 @@ namespace Задача_2_Вариант_14
             InitializeComponent();
             ports = new SpisokPorts("0#1#2#3#4");
             regims = new Menu1("Измерения#Сравнения", "Cантиметры#Дюймы#Присутствие", "раст. см#расст. дюймы#присутствие");
+            Picture = new List<string>();
+            Picture.Add("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Image1.wmf");
+            Picture.Add("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\image2.wmf");
+            Picture.Add("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Image3.wmf");
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -167,6 +171,11 @@ namespace Задача_2_Вариант_14
             BlockR.Width = Width;
             e.Graphics.SetClip(BlockR);
 
+            double Pik = 0.21, Pig = 0.135, Pio = 0.6, Pil = 0.6;
+            PictureR.X = (int)Math.Round(BlockR.Width * Pik);
+            PictureR.Y = BlockR.Y + (int)Math.Round(BlockR.Height * Pig) + 1;
+            PictureR.Height = (int)Math.Round(BlockR.Height * Pio);
+            PictureR.Width = (int)Math.Round(BlockR.Width * Pil);
 
             double Portk = 0.54, Portg = 0.02, Portl = 0.3757, Porto = 0.18;
             PortR.X = (int)Math.Round(BlockR.Width * Portk);
@@ -201,6 +210,7 @@ namespace Задача_2_Вариант_14
             e.Graphics.DrawImage(Image.FromFile(Ports_up), PortR);
             e.Graphics.DrawImage(Image.FromFile(Right), RightR);
             e.Graphics.DrawImage(Image.FromFile(Left), LeftR);
+            e.Graphics.DrawImage(Image.FromFile(Picture[regims.getCurrentMenu()/2]), PictureR);
             regims.Draw(e.Graphics, MenuR.X, MenuR.Y, MenuR.Width, MenuR.Height);
 
             e.Graphics.ResetClip();
