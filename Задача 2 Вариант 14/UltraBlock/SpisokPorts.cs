@@ -10,6 +10,7 @@ namespace Задача_2_Вариант_14
 {
     class SpisokPorts
     {
+        private String spisokImage = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\spisok.wmf";
         private string currentPort;
         private bool openS;
         Rectangle Location;
@@ -71,8 +72,9 @@ namespace Задача_2_Вариант_14
             {
                 for(int i = 0; i < spisok.Count; i++)
                 {
-                    graphics.FillRectangle(Brushes.Gray, Location.X - (Location.Width * (i + 1)), Location.Y, Location.Width, Location.Height);
-                    graphics.DrawRectangle(Pens.Black, Location.X - (Location.Width * (i + 1)), Location.Y, Location.Width, Location.Height);
+                    //graphics.FillRectangle(Brushes.Gray, Location.X - (Location.Width * (i + 1)), Location.Y, Location.Width, Location.Height);
+                    //graphics.DrawRectangle(Pens.Black, Location.X - (Location.Width * (i + 1)), Location.Y, Location.Width, Location.Height);
+                    graphics.DrawImage(Image.FromFile(spisokImage), Location.X - (Location.Width * (i + 1)), Location.Y, Location.Width, Location.Height);
                     graphics.DrawString(spisok[i], new Font("Ports", 12), Brushes.Black, Location.X - (Location.Width * (i + 1)), Location.Y);
                 }
             }

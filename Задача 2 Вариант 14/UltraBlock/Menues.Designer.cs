@@ -1,6 +1,6 @@
 ﻿namespace Задача_2_Вариант_14.UltraBlock
 {
-    partial class Menu
+    partial class Menues
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -28,15 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // Menu
-            // 
-            this.BackColor = System.Drawing.Color.Black;
-            this.Dock = System.Windows.Forms.DockStyle.None;
-            this.Size = new System.Drawing.Size(100, 40);
-            this.ResumeLayout(false);
-
+            components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         }
 
         #endregion

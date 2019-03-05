@@ -34,10 +34,10 @@
             // ultraSonick1
             // 
             this.ultraSonick1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ultraSonick1.Location = new System.Drawing.Point(73, 33);
+            this.ultraSonick1.Location = new System.Drawing.Point(87, 293);
             this.ultraSonick1.MinimumSize = new System.Drawing.Size(77, 77);
             this.ultraSonick1.Name = "ultraSonick1";
-            this.ultraSonick1.Size = new System.Drawing.Size(270, 238);
+            this.ultraSonick1.Size = new System.Drawing.Size(77, 77);
             this.ultraSonick1.TabIndex = 0;
             // 
             // Form1
