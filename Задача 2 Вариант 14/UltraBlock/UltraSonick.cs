@@ -10,23 +10,23 @@ using System.Windows.Forms;
 
 namespace Задача_2_Вариант_14
 {
-    public partial class UltraSonick : UserControl
+    public partial class UltraSonick : UserControl  // Наследование позволяет добавить свой элемент на панель элементов
     {
-
-        private int dist = 0; // Дистанция
-        private SpisokPorts ports;
-        private Menu1 regims;
-        private Rectangle PortR, LeftR, RightR, MenuR, BlockR, PictureR;
+        private SpisokPorts ports; // Объект списка портов
+        private Menu regims; // Объект меню
+        private Rectangle PortR, LeftR, RightR, MenuR, BlockR, PictureR; // Области элементов объекта
+        // Пути до векторных картинок
         private string blokFile = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\block.wmf",
                        Left = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left.wmf",
                        Right = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Right.wmf",
                        Ports_up = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_up.wmf";
-        private List<String> Picture;
+
+        private List<String> Picture; // Список путей до центрального изображения (инициализируется в конструкторе)
                        
 
-        private void UltraSonick_MouseClick(object sender, MouseEventArgs e)
+        private void UltraSonick_MouseClick(object sender, MouseEventArgs e) // Обработка щелчка мыши
         {
-            if (PortR.Contains(e.Location))
+            if (PortR.Contains(e.Location)) // Проверка на нахождение щелчка мыши в области списка и соответсвующая реакция, в зависимости от состояния списка
             {
                 if (ports.getopenS()&&ports.isInside(e))
                 {
@@ -62,7 +62,7 @@ namespace Задача_2_Вариант_14
             }
 
 
-            if (MenuR.Contains(e.Location))
+            if (MenuR.Contains(e.Location)) // Проверка на нахождение щелчка мыши в области меня и соответсвующая реакция, в зависимости от состояния меню
             {
                     regims.open();
                     this.Invalidate();
@@ -105,39 +105,43 @@ namespace Задача_2_Вариант_14
                 }
             }
         }
-        private static bool flag = true;
-        private void UltraSonick_MouseMove(object sender, MouseEventArgs e)
+
+        /*Хочется заметить, что такие сложные проверки можно было бы реализовать проще,
+         разбив элемент на под-элементы*/
+
+        private static bool flag = true; // Используется для избежание излишней перерисовки объекта
+        private void UltraSonick_MouseMove(object sender, MouseEventArgs e) // Обработка перемещения мыши в области элемента управления
         {
 
-            if (PortR.Contains(e.Location)||(ports.getopenS()&& ports.isInside(e)))
+            if (PortR.Contains(e.Location)||(ports.getopenS()&& ports.isInside(e))) // Проверка на нахождение в области списка
             {
                 Ports_up = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_up_Fokused2.wmf";
                 this.Invalidate();
                 flag = true;
                 return;
             }
-            if (LeftR.Contains(e.Location))
+            if (LeftR.Contains(e.Location)) // Проверка на нахождение в области левого соединения
             {
                 Left = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left_Fokused1.wmf";
                 this.Invalidate();
                 flag = true;
                 return;
             }
-            if (RightR.Contains(e.Location))
+            if (RightR.Contains(e.Location)) // Проверка на нахождение в области правого соединения
             {
                 Right = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Right_Fokused.wmf";
                 this.Invalidate();
                 flag = true;
                 return;
             }
-            if (MenuR.Contains(e.Location)||(regims.getopenS() && regims.isInside(e)||(regims.getopenp() && regims.isInsidePod(e))))
+            if (MenuR.Contains(e.Location)||(regims.getopenS() && regims.isInside(e)||(regims.getopenp() && regims.isInsidePod(e)))) // Проверка на нахождение в области меню
             {
                 regims.setMenuFokused();
                 this.Invalidate();
                 flag = true;
                 return;
             }
-            if (flag)
+            if (flag) // Проверка на выход из активной зоны и возврат всех катринок в исходное состояние
             {
                 Ports_up = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Port_up.wmf";
                 Left = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Left.wmf";
@@ -149,22 +153,28 @@ namespace Задача_2_Вариант_14
 
         }
 
-        Point PortText = new Point(); 
+        private Point PortText = new Point(); // Расположение текста
 
         // Методы класса
-        public UltraSonick()
+        public UltraSonick() // Конструктор класса
         {
-            InitializeComponent();
-            ports = new SpisokPorts("0#1#2#3#4");
-            regims = new Menu1("Измерения#Сравнения", "Cантиметры#Дюймы#Присутствие", "раст. см#расст. дюймы#присутствие");
-            Picture = new List<string>();
+            InitializeComponent(); // Нужен для определения класса графической средой
+
+            ports = new SpisokPorts("0#1#2#3#4"); // Инициализация списка
+            regims = new Menu("Измерения#Сравнения", "Cантиметры#Дюймы#Присутствие", "раст. см#расст. дюймы#присутствие"); // Инициализация меню
+
+            // Инициализация списка центральных картинок
+            Picture = new List<string>(); 
             Picture.Add("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Image1.wmf");
             Picture.Add("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\image2.wmf");
             Picture.Add("E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\Image3.wmf");
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        protected override void OnPaint(PaintEventArgs e) // Метод необходимый графической среде, переопределяемый из класса userControl
+                                                          // В нем происходит рисование объекта
         {
+
+            // Вычисления под-областей элемента управления (с помощью коэффицентов, примененных для удобства)
             BlockR.X = 0;
             BlockR.Y = Height/5;
             BlockR.Height = Height*3 / 5;
@@ -205,6 +215,7 @@ namespace Задача_2_Вариант_14
             PortText.X = PortR.X + (int)Math.Round(PortR.Width * PTX); 
             PortText.Y = PortR.Y + (int)Math.Round(PortR.Height * PTY);
 
+            // Отрисовка частей пользовательского элемента управления
             base.OnPaint(e);
             e.Graphics.DrawImage(Image.FromFile(blokFile), e.Graphics.ClipBounds);
             e.Graphics.DrawImage(Image.FromFile(Ports_up), PortR);

@@ -10,24 +10,26 @@ namespace Задача_2_Вариант_14
 {
     class SpisokPorts
     {
+        // Путь до фоновой картинки списка
         private String spisokImage = "E:\\Desktop\\Визуальное программирование\\Ultrasonik\\Задача 2 Вариант 14\\Resources\\spisok.wmf";
-        private string currentPort;
-        private bool openS;
-        Rectangle Location;
+        private string currentPort; // Поле, хранящее значение выбранного порта
+        private bool openS; // Режим (открыт == true, закрыт == false)
+        Rectangle Location; // Расположение списка
 
-        private List<String> spisok = new List<string>();
-        public SpisokPorts(string srt)
+        private List<String> spisok = new List<string>(); // Список значений возможных для выбора из списка
+        public SpisokPorts(string srt) // Конструктор класса список
         {
+            // Инициализация списка значений
             spisok.AddRange(srt.Split('#'));
-            currentPort = "0";
-            openS = false;
+            currentPort = "0"; // Текущий порт по умолчанию == 0
+            openS = false; // Режим по умолчанию - закрыт
         }
 
-        public bool getopenS(){
+        public bool getopenS(){ // Возвращает текущий резим отображения списка
             return openS;
         }
 
-        internal void open()
+        internal void open() // Меняет режим отображения списка
         {
             if (openS)
             {
@@ -39,7 +41,7 @@ namespace Задача_2_Вариант_14
             }
         }
 
-        internal bool isInside(System.Windows.Forms.MouseEventArgs e)
+        internal bool isInside(System.Windows.Forms.MouseEventArgs e) // Проверка на нахождение координат внутри списка
         {
             if ((e.Y > Location.Y)||(e.X < Location.Y - (Location.Height * spisok.Count)))
             {
@@ -52,19 +54,23 @@ namespace Задача_2_Вариант_14
             return true;
         }
 
-        internal void ChangePorts(MouseEventArgs e)
+        internal void ChangePorts(MouseEventArgs e) // Метод изменения порта на основе координат щелчка
         {
             currentPort = spisok[((Location.Y - e.Y)-1) / Location.Height];
         }
 
-        internal void Draw(Graphics graphics, int x, int y, int width, int height)
+        internal void Draw(Graphics graphics, int x, int y, int width, int height) // Метод рисования объекта
         {
+            // Определение расположения объекта 
             Location.X = x;
             Location.Y = y;
             Location.Width = width;
             Location.Height = height;
+
+            // Рисование текста выбранного порта
             graphics.DrawString(currentPort, new Font("Ports", Location.Height/3*2 < Location.Width / 3 * 2? Location.Height / 3 * 2: Location.Width / 3 * 2), Brushes.Black, Location);
-            if (!openS)
+
+            if (!openS) // Проверка режима отображения
             {
                 return;
             }
@@ -72,8 +78,7 @@ namespace Задача_2_Вариант_14
             {
                 for(int i = 0; i < spisok.Count; i++)
                 {
-                    //graphics.FillRectangle(Brushes.Gray, Location.X - (Location.Width * (i + 1)), Location.Y, Location.Width, Location.Height);
-                    //graphics.DrawRectangle(Pens.Black, Location.X - (Location.Width * (i + 1)), Location.Y, Location.Width, Location.Height);
+                    // Прорисовка открытого списка
                     graphics.DrawImage(Image.FromFile(spisokImage), Location.X, Location.Y - (Location.Height * (i + 1)), Location.Width, Location.Height);
                     graphics.DrawString(spisok[i], new Font("Ports", Location.Height / 3 * 2 < Location.Width / 3 * 2 ? Location.Height / 3 * 2 : Location.Width / 3 * 2), Brushes.Black, Location.X + Location.Width/6, Location.Y - (Location.Height * (i + 1)));
                 }

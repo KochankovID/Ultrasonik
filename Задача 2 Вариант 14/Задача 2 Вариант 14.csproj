@@ -54,7 +54,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UltraBlock\Menu1.cs" />
+    <Compile Include="UltraBlock\Menu.cs" />
     <Compile Include="UltraBlock\SpisokPorts.cs" />
     <Compile Include="UltraBlock\UltraSonick.cs">
       <SubType>UserControl</SubType>
